@@ -1,0 +1,99 @@
+﻿<UserControl
+    x:Class="NetFlix.StepThroughListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    x:Name="root">
+
+    <Grid Height="{Binding Height, ElementName=root}" 
+          Width="{Binding Width, ElementName=root}"
+          PointerEntered="Grid_PointerEntered"
+          PointerExited="Grid_PointerExited">
+
+        <ListView 
+            x:Name="ListViewRiver"
+            HorizontalAlignment="Stretch"
+            SingleSelectionFollowsFocus="True"
+            ItemsSource="{Binding ItemsSource, ElementName=root}" 
+            SelectedItem="{x:Bind SelectedItem, Mode=TwoWay}"
+            ItemTemplate="{x:Bind ItemTemplate, Mode=TwoWay}"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            ScrollViewer.VerticalScrollMode="Disabled"
+            ScrollViewer.HorizontalScrollMode="Disabled"
+            Loaded="ListView_Loaded" 
+            Unloaded="ListView_Unloaded"
+            SelectionChanged="ListView_SelectionChanged"
+            >
+            
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <ListViewItemPresenter
+                                    ContentTransitions="{TemplateBinding ContentTransitions}"
+                                    SelectionCheckMarkVisualEnabled="True"
+                                    CheckBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                    CheckBoxBrush="{ThemeResource SystemControlForegroundBaseMediumHighBrush}"
+                                    DragBackground="{ThemeResource ListViewItemDragBackgroundThemeBrush}"
+                                    DragForeground="{ThemeResource ListViewItemDragForegroundThemeBrush}"
+                                    FocusBorderBrush="{ThemeResource SystemControlForegroundAltHighBrush}"
+                                    FocusSecondaryBorderBrush="{ThemeResource SystemControlForegroundBaseHighBrush}"
+                                    PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}"
+                                    PointerOverBackground="Transparent"
+                                    PointerOverForeground="{ThemeResource SystemControlHighlightAltBaseHighBrush}"
+                                    SelectedBackground="Transparent"
+                                    SelectedForeground="{ThemeResource SystemControlHighlightAltBaseHighBrush}"
+                                    SelectedPointerOverBackground="{ThemeResource ListViewItemBackgroundPointerOver}"
+                                    PressedBackground="Transparent"
+                                    SelectedPressedBackground="Transparent"
+                                    DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}"
+                                    DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}"
+                                    ReorderHintOffset="{ThemeResource ListViewItemReorderHintThemeOffset}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    ContentMargin="{TemplateBinding Padding}"
+                                    CheckMode="Inline"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+
+        <Button
+            x:Name="ButtonLeft"
+            Visibility="{x:Bind AlwaysShowButton, Mode=OneWay}"
+            Height="48" Width="48"
+            Windows10version1809:CornerRadius="24"
+            Background="{ThemeResource SystemRevealAltMediumLowColor}"
+            Tapped="ButtonLeft_Tapped">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76B;" FontSize="18" />
+        </Button>
+
+        <Button x:Name="ButtonRight"
+            Visibility="{x:Bind AlwaysShowButton, Mode=OneWay}"
+            Height="48" Width="48"
+            HorizontalAlignment="Right"
+            Windows10version1809:CornerRadius="24"
+            Background="{ThemeResource SystemRevealAltMediumLowColor}"
+            Tapped="ButtonRight_Tapped">
+            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE76C;" FontSize="18" />
+        </Button>
+    </Grid>
+</UserControl>
