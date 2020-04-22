@@ -2,7 +2,10 @@
 
 An article about how to make NetFlix alike app using `ItemsRepeater`.
 
-Relate article: https://www.cnblogs.com/hupo376787/p/12700061.html
+Relate article: 
+中文    https://www.cnblogs.com/hupo376787/p/12700061.html
+
+English https://www.cnblogs.com/hupo376787/p/12741642.html
 
 
 
